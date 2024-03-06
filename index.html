@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Check your weather details</h2>
+    <form>
+        <input type=""placeholder="enter a city">&nbsp
+        <input type="submit">
+    </form>
+    <script>
+        var pravali=document.createElement("h1")
+        document.body.appendChild(pravali)
+
+        var a=document.forms
+        console.log(a[0])
+
+        a[0].addEventListener("submit",function(e){
+              e.preventDefault()
+             
+            // console.log(e)
+var z=e.target[0].value
+           var b=" https://api.openweathermap.org/data/2.5/weather?q="   
+           var c="&appid=68133d2c7541ff33881a6bb235f65d70"
+          
+           var hello=b+z+c
+        fetch( hello,{
+            method:"get"
+        }).then((val)=>{
+            return val.json()
+        }).then((val)=>{
+           
+           var temp= parseInt((val.main.temp)-273.15)
+           console.log(temp)
+            //   document.write(temp)
+
+              if(temp<25){
+//                 var img1=document.createElement("img")
+//  img1.setAttribute("src","./hot.jpeg")
+//  img1.style.width="300px"
+//  document.body.appendChild(img1)
+
+pravali.style.backgroundImage="url('./cool.jpeg')"
+pravali.style.backgroundrepeat="no-repeat"
+pravali.style.width="500px"
+pravali.style.height="300px"
+
+            }
+            else if(temp>30){
+                pravali.style.backgroundImage="url('./hot.jpeg')" 
+                pravali.style.backgroundrepeat="no-repeat"
+                pravali.style.width="100%"
+pravali.style.height="600px"
+            }
+            pravali.innerHTML=temp+"<sup>o</sup>C"
+        })
+          
+        })
+
+       
+
+        // fetch(" https://api.openweathermap.org/data/2.5/weather?q=hyderabad&appid=68133d2c7541ff33881a6bb235f65d70",{
+        //     method:"get"
+        // }).then((val)=>{
+        //     return val.json()
+        // }).then((val)=>{
+        //     console.log(val.main.temp)
+        //       document.write(val.main.temp)
+        // })
+    </script>
+</body>
+</html>
